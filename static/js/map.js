@@ -1643,7 +1643,9 @@ function centerMapOnLocation () {
       map.setCenter(latlng)
       clearInterval(animationInterval)
       currentLocation.style.backgroundPosition = '-144px 0px'
-    })
+    }, function (err) {
+      console.error('Error getting your location. ', err);
+    },{maximumAge:60000, timeout:10000, enableHighAccuracy:true});
   } else {
     clearInterval(animationInterval)
     currentLocation.style.backgroundPosition = '0px 0px'
@@ -1919,7 +1921,9 @@ $(function () {
             marker.setPosition(center)
           })
         }
-      })
+      }, function (err) {
+        console.error('Error getting your location. ', err);
+      },{maximumAge:60000, timeout:10000, enableHighAccuracy:true});      
     }
   }, 1000)
 
